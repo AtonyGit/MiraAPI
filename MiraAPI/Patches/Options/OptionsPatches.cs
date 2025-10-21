@@ -14,7 +14,7 @@ namespace MiraAPI.Patches.Options;
 [HarmonyPatch]
 public static class OptionsPatches
 {
-    [HarmonyPrefix]
+    /*[HarmonyPrefix]
     [HarmonyPatch(typeof(NumberOption), nameof(NumberOption.Increment), MethodType.Getter)]
     public static bool FloatIncrementPatch(NumberOption __instance, ref float __result)
     {
@@ -32,7 +32,7 @@ public static class OptionsPatches
 
         __result = increment;
         return false;
-    }
+    }*/
     [HarmonyPrefix]
     [HarmonyPatch(typeof(RoleOptionSetting), nameof(RoleOptionSetting.IncreaseChance))]
     public static bool RoleIncreaseChancePrefix(RoleOptionSetting __instance)

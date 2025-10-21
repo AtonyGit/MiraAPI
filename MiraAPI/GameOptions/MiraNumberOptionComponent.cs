@@ -1,3 +1,4 @@
+/*
 using System;
 using MiraAPI.GameOptions.OptionTypes;
 using Reactor.Utilities.Attributes;
@@ -26,3 +27,4 @@ public class MiraNumberOptionComponent(IntPtr cppPtr) : MonoBehaviour(cppPtr)
     /// </summary>
     public bool ShiftIncrementToggle { get; set; }
 }
+*/

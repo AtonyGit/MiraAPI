@@ -106,10 +106,10 @@ public class ModdedNumberOption : ModdedOption<float>
         var numberOption = Object.Instantiate(numberOpt, Vector3.zero, Quaternion.identity, container);
         numberOption.name =
             $"{ParentMod!.OptionsTitleText}.NumberOption.{TranslationController.Instance.GetString(StringName)}";
-        var optionComponent = numberOption.gameObject.AddComponent<MiraNumberOptionComponent>();
+        /*var optionComponent = numberOption.gameObject.AddComponent<MiraNumberOptionComponent>();
         optionComponent.NumberOption = this;
         optionComponent.DefaultIncrement = Increment;
-        optionComponent.ShiftIncrementToggle = ShiftIncrement;
+        optionComponent.ShiftIncrementToggle = ShiftIncrement;*/
 
         numberOption.SetUpFromData(Data, 20);
         numberOption.OnValueChanged = (Il2CppSystem.Action<OptionBehaviour>)ValueChanged;
