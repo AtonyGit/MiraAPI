@@ -232,7 +232,7 @@ public static class CustomMurderRpc
 
         if (createDeadBody)
         {
-            deadBody = Object.Instantiate(GameManager.Instance.GetDeadBody(source.Data.Role));
+            deadBody = Object.Instantiate(GameManager.Instance.DeadBodyPrefab);
             deadBody.enabled = false;
             deadBody.ParentId = target.PlayerId;
             deadBody.bodyRenderers.ToList().ForEach(target.SetPlayerMaterialColors);
@@ -242,13 +242,6 @@ public static class CustomMurderRpc
             vector.z = vector.y / 1000f;
             deadBody.transform.position = vector;
         }
-
-        source.Data.Role.KillAnimSpecialSetup(deadBody, source, target);
-        target.Data.Role.KillAnimSpecialSetup(deadBody, source, target);
-
-        // no idea if this causes bugs, but innersloth is brain-dead
-        // I HATE INNERSCUFF I HATE INNERSCUFF I HATE INNERSCUFF I HATE INNERSCUFF I HATE INNERSCUFF I HATE INNERSCUFF
-        PlayerControl.LocalPlayer.Data.Role.KillAnimSpecialSetup(deadBody, source, target);
 
         if (isParticipant)
         {

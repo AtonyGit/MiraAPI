@@ -1,3 +1,4 @@
+/*
 using System.Linq;
 using AmongUs.GameOptions;
 using HarmonyLib;
@@ -40,3 +41,4 @@ public static class DetectiveNotesMinigamePatch
         ControllerManager.Instance.OpenOverlayMenu(__instance.ImpostorOverlay, __instance.impostorTypePopup, __instance.ImpostorIconControllerSelectables[0], __instance.ImpostorIconControllerSelectables, false);
     }
 }
+*/

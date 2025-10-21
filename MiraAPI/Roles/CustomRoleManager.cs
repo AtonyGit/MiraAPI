@@ -39,7 +39,7 @@ public static class CustomRoleManager
     /// <summary>
     /// Gets the list of all roles from vanilla RoleManager.
     /// </summary>
-    public static RoleBehaviour[] AllRoles => RoleManager.Instance.AllRoles.ToArray();
+    public static RoleBehaviour[] AllRoles => RoleManager.Instance.AllRoles;
 
     /// <summary>
     /// Gets the list of custom roles as RoleBehaviour objects.
@@ -64,12 +64,10 @@ public static class CustomRoleManager
         return _roleId++;
     }
 
+
     internal static void RegisterInRoleManager()
     {
-        foreach (var role in CustomRoles.Values)
-        {
-            RoleManager.Instance.AllRoles.Add(role);
-        }
+        RoleManager.Instance.AllRoles = RoleManager.Instance.AllRoles.Concat(CustomRoles.Values).ToArray();
 
         foreach (var role in CustomRoles.Values.Where(x => x.IsDead))
         {
@@ -108,7 +106,7 @@ public static class CustomRoleManager
     {
         if (!(typeof(RoleBehaviour).IsAssignableFrom(roleType) && typeof(ICustomRole).IsAssignableFrom(roleType)))
         {
-            Error($"{roleType.Name} does not inherit from RoleBehaviour or ICustomRole.");
+            Logger<MiraApiPlugin>.Error($"{roleType.Name} does not inherit from RoleBehaviour or ICustomRole.");
             return null;
         }
 
@@ -137,12 +135,6 @@ public static class CustomRoleManager
         roleBehaviour.MaxCount = customRole.Configuration.MaxRoleCount;
         roleBehaviour.RoleScreenshot = customRole.Configuration.OptionsScreenshot?.LoadAsset();
 
-        _emptySettings ??= new(0);
-        _emptyKillAnimations ??= new(0);
-
-        roleBehaviour.AllGameSettings = _emptySettings;
-        roleBehaviour.CustomKillAnimations = _emptyKillAnimations;
-
         if (customRole.Configuration.Icon != null)
         {
             var asset = customRole.Configuration.Icon.LoadAsset();
@@ -168,7 +160,7 @@ public static class CustomRoleManager
 
         if (useTaskHint && !overridesTaskText)
         {
-            Error($"Role {customRole.RoleName} is using RoleHintType.TaskHint but does not override SpawnTaskHeader!");
+            Logger<MiraApiPlugin>.Error($"Role {customRole.RoleName} is using RoleHintType.TaskHint but does not override SpawnTaskHeader!");
         }
 
         CustomRoles.Add(roleId, roleBehaviour);

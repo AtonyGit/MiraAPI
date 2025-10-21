@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿/*
+using System.Collections.Generic;
 using System.Linq;
 using AmongUs.GameOptions;
 using HarmonyLib;
@@ -47,3 +48,4 @@ internal static class HowToPlayPatch
         ControllerManager.Instance.SetDefaultSelection(__instance.defaultButtonSelected, null);
     }
 }
+*/
