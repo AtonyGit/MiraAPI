@@ -4,7 +4,6 @@ using System.Linq;
 using AmongUs.GameOptions;
 using Il2CppInterop.Runtime;
 using Il2CppInterop.Runtime.Injection;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using MiraAPI.Networking;
 using MiraAPI.PluginLoading;
 using MiraAPI.Utilities;
@@ -37,11 +36,6 @@ public static class CustomRoleManager
         CustomRoleUtils.GetIntroSound(RoleTypes.Impostor)!;
 
     /// <summary>
-    /// Gets the list of all roles from vanilla RoleManager.
-    /// </summary>
-    public static RoleBehaviour[] AllRoles => RoleManager.Instance.AllRoles;
-
-    /// <summary>
     /// Gets the list of custom roles as RoleBehaviour objects.
     /// </summary>
     public static IReadOnlyList<RoleBehaviour> CustomRoleBehaviours { get; private set; } = [];
@@ -54,16 +48,12 @@ public static class CustomRoleManager
     internal static readonly Dictionary<ushort, RoleBehaviour> CustomRoles = [];
     internal static readonly Dictionary<Type, ushort> RoleIds = [];
 
-    private static Il2CppSystem.Collections.Generic.List<BaseGameSetting>? _emptySettings;
-    private static Il2CppReferenceArray<OverlayKillAnimation>? _emptyKillAnimations;
-
     private static ushort _roleId = 100;
 
     private static ushort GetNextRoleId()
     {
         return _roleId++;
     }
-
 
     internal static void RegisterInRoleManager()
     {
